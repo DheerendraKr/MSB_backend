@@ -99,6 +99,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	
 	private LoginResponseModel createLoginResponseModel(final UserResponseModel user, final String token) {
 		LoginResponseModel response = new LoginResponseModel();
+		response.setUserName(user.getFirstName()+" "+user.getLastName());
 		response.setAccess_token(token);
 		response.setExpires_in(this.TOKEN_EXP_TIME);
 		response.setToken_type(environment.getProperty("authorization.token.header.prefix"));

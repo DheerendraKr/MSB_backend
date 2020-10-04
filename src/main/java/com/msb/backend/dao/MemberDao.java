@@ -6,10 +6,12 @@ package com.msb.backend.dao;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -42,6 +44,9 @@ public class MemberDao implements Serializable {
 	private String memberId;
 	
 	private Date addedOn;
+	
+	@OneToOne
+	private UsersStatus status;
 
 	/**
 	 * @return the id
@@ -125,6 +130,20 @@ public class MemberDao implements Serializable {
 	 */
 	public void setAddedOn(Date addedOn) {
 		this.addedOn = addedOn;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public UsersStatus getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(UsersStatus status) {
+		this.status = status;
 	}
 	
 }

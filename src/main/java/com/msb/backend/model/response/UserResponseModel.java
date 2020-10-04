@@ -32,6 +32,8 @@ public class UserResponseModel {
 	
 	private UserStatus userStatus;
 	
+	private int membersAdded;
+	
 	private Date joinedOn;
 	
 	private Date activatedOn;
@@ -178,6 +180,18 @@ public class UserResponseModel {
 		this.userRoles = userRoles;
 	}
 
-	
+	/**
+	 * @return the membersAdded
+	 */
+	public int getMembersAdded() {
+		return membersAdded;
+	}
+
+	/**
+	 * @param membersAdded the membersAdded to set
+	 */
+	public void setMembersAdded(int membersAdded) {
+		this.membersAdded = membersAdded;
+	}
 }
 	

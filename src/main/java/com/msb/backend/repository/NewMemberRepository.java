@@ -17,4 +17,6 @@ public interface NewMemberRepository extends CrudRepository<MemberDao, Long> {
 	
 	List<MemberDao> findByMemberIdIn(List<String> memberId);
 	
+	void deleteByMemberId(String memberId);
+	
 }

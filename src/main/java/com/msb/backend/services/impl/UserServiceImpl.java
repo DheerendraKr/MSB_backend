@@ -30,8 +30,10 @@ import com.msb.backend.dao.UsersStatus;
 import com.msb.backend.model.enums.UserRoles;
 import com.msb.backend.model.enums.UserStatus;
 import com.msb.backend.model.request.UserRequestModel;
+import com.msb.backend.model.response.UserDetailsResponseModels;
 import com.msb.backend.model.response.UserResponseModel;
 import com.msb.backend.repository.MemberRelationRepository;
+import com.msb.backend.repository.NewMemberRepository;
 import com.msb.backend.repository.UserRepository;
 import com.msb.backend.repository.UserRoleRepository;
 import com.msb.backend.repository.UserStatusRepository;
@@ -55,6 +57,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private MemberRelationRepository memberRelationRepository;
+	
+	@Autowired
+	private NewMemberRepository newMemberRepository;
 
 	@Autowired
 	private UserRoleRepository userRoleRepository;
@@ -64,7 +69,7 @@ public class UserServiceImpl implements UserService {
 
 	private static List<UserRole> userRoles = new ArrayList<>();
 
-	private static UsersStatus pendingUserStatus;
+	private static UsersStatus activeUserStatus;
 
 	private static ModelMapper modelMapper = null;
 
@@ -77,7 +82,7 @@ public class UserServiceImpl implements UserService {
 		userRoles = userRoleRepository.findAll().stream()
 				.filter(item -> item.getRole().equals(UserRoles.USER.toString())).collect(Collectors.toList());
 		//initializing staus
-		pendingUserStatus = userStatusRepository.findByStatus(UserStatus.PENDING.toString());
+		activeUserStatus = userStatusRepository.findByStatus(UserStatus.ACTIVE.toString());
 	}
 
 	@Override
@@ -105,9 +110,11 @@ public class UserServiceImpl implements UserService {
 		userDetails.setPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
 		UserDao userDao = modelMapper.map(userDetails, UserDao.class);
 		userDao.setJoinedOn(new Date(System.currentTimeMillis()));
-		userDao.setStatus(pendingUserStatus);
+		userDao.setStatus(activeUserStatus);
 		userDao.setRoles(userRoles);
 		userRepository.save(userDao);
+		//deleting from new member table
+		newMemberRepository.deleteByMemberId(userDetails.getMemberId());
 		return modelMapper.map(userDao, UserResponseModel.class);
 	}
 
@@ -126,4 +133,33 @@ public class UserServiceImpl implements UserService {
 		return rolesEnum;
 	}
 
+	@Override
+	public UserDetailsResponseModels fetchUserDetails(String memberId) {
+		UserDao userByMemberId = userRepository.findByMemberId(memberId);		
+		return this.createUserDetailsResponse(userByMemberId);
+	}
+	
+	
+	
+	private UserDetailsResponseModels createUserDetailsResponse(final UserDao user) {
+		UserDetailsResponseModels userResponse = new UserDetailsResponseModels();
+		userResponse.setName(user.getFirstName()+" "+user.getLastName());
+		userResponse.setMobileNo(user.getMobileNo());
+		userResponse.setEmail(user.getEmail());
+		userResponse.setJoinedOn(user.getJoinedOn());
+		userResponse.setActiveFrom(user.getActivatedOn());
+		userResponse.setTotalEarnings(this.calculateEarningForUser(user.getMemberId()));
+		userResponse.setAddedMembers(this.calculateTotalAddedMembers(user.getMemberId()));
+		return userResponse;
+	}
+
+	
+	private long calculateEarningForUser(final String memberId) {	
+		return 0;
+	}
+	
+	private int calculateTotalAddedMembers(final String memberId) {
+		return memberRelationRepository.findBySponsorId(memberId).size();
+	}
+	
 }

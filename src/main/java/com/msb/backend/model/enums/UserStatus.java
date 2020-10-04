@@ -10,7 +10,8 @@ package com.msb.backend.model.enums;
 public enum UserStatus {
 	ACTIVE("ACTIVE"),
 	PENDING("PENDING"),
-	DEACTIVATED("DEACTIVATED");
+	DEACTIVATED("DEACTIVATED"),
+	CREATED("CREATED");
 	
 	public final String label;
 	 

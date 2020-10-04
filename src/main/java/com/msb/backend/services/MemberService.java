@@ -18,10 +18,10 @@ import com.msb.backend.model.response.MemberDetailsResponseModel;
 @Service
 public interface MemberService {
 
-	MemberDetailsResponseModel getCurrentMemberDetails();
+	MemberDetailsResponseModel getCurrentMemberDetails(final String memberId);
 	
-	AddMemberResponseModel addNewMember(AddMemberRequestModel member);
+	AddMemberResponseModel addNewMember(AddMemberRequestModel member, final String sponsorId);
 	
-	List<AddMemberResponseModel> getAddedMemberDetails();
+	List<AddMemberResponseModel> getAddedMemberDetails(final String memberId);
 	
 }

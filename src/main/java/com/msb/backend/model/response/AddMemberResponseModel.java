@@ -24,6 +24,8 @@ public class AddMemberResponseModel {
 	private String memberId;
 	
 	private Date addedOn;
+	
+	private String status;
 
 	/**
 	 * @return the name
@@ -95,4 +97,17 @@ public class AddMemberResponseModel {
 		this.addedOn = addedOn;
 	}
 
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

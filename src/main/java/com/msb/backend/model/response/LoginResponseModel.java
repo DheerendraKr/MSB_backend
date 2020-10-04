@@ -16,6 +16,8 @@ import com.msb.backend.model.enums.UserRoles;
 @JsonInclude(value = Include.NON_NULL)
 public class LoginResponseModel {
 	
+	private String userName;
+	
 	private String access_token;
 	
 	private long expires_in;
@@ -25,6 +27,20 @@ public class LoginResponseModel {
 	private String refresh_token;
 	
 	private List<UserRoles> roles;
+
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	/**
 	 * @return the access_token
