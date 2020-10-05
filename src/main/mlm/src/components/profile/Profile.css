@@ -1,0 +1,46 @@
+
+.profile-image{
+    width:30%;
+    height:50%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 35%;
+    border-radius: 200px;
+    box-shadow: 1px 1px 10px #5c8a8a;
+}
+
+.profile-desc{
+    width:60%;
+    min-height: 40%;
+    margin-left: 20%;
+    border-radius: 10px;
+    padding:2em;
+    box-shadow: 1px 1px 10px #5c8a8a;
+}
+.profile-content{
+    width:30%;
+    min-height: 10%;
+    margin-left:20%;
+    margin-right: 5%;
+    text-align: left;
+}
+
+.profile-content-value{
+    width:40%;
+    min-height: 10%;
+    text-align: left;
+}
+
+.profile-content-btn{
+    width:30%;
+    min-height: 10%;
+    margin-left: 35%;
+    margin-top:3em;
+    text-align: center;
+}
+.error_message{
+    width: 100%;
+    color: #ff0000;
+    font-size: 1.4em;
+    text-align: center;
+}

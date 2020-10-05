@@ -1,0 +1,40 @@
+
+
+.member-container1{
+    width:60%;
+    min-height: 40%;
+    margin-left: 20%;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    padding:2em;
+    box-shadow: 1px 1px 10px #5c8a8a;
+}
+
+.topic{
+    width:60%;
+    min-height: 5%;
+    padding:0.5em;
+    font-weight: bold;
+    background-color: #006699;
+    opacity: 0.8;
+    color: #fff;
+    font-size: 1.3em;
+    margin: 1em 0em 1em 20%;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 1px 1px 5px #5c8a8a;
+}
+
+.profile-content{
+    width:30%;
+    min-height: 10%;
+    margin-left:20%;
+    margin-right: 5%;
+    text-align: left;
+}
+
+.profile-content-value{
+    width:40%;
+    min-height: 10%;
+    text-align: left;
+}
